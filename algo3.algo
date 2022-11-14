@@ -1,0 +1,28 @@
+PROCEDURE docproduct(v1,v2:ARRY_OF_INTEGER,ps:INTEGER)
+
+VAR
+    i:INTEGER;
+    tab1:ARRY_OF_ARRY;
+
+BEGIN
+    IF (v1.length<>v2.length) THEN
+        write("erreur length");
+    END_IF
+    FOR i FROM 0 TO v1.length STEP step  DO
+        ps:=v1[i]*v2[i]
+    END_FOR
+    END
+    ALGORITHM orthogonal
+    VAR
+        t1[]:ARRY_OF_ARRY;
+        ps,i,j:INTEGER;
+    BEGIN
+       FOR i FROM 0 TO t1.length-2 STEP step  DO
+        FOR j FROM i+1 TO t1.length-1 STEP step  DO
+            docproduct(t1[i],t1[j],ps);
+            IF (ps=0) THEN
+                write(v1,v2,"sont orth");
+            END_IF
+        END_FOR
+       END_FOR
+    END
